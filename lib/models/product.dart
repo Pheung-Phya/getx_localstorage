@@ -1,30 +1,35 @@
 class Product {
-  int? id;
+  final int? id;
   final String name;
+  final int qty;
   final double price;
-  final int quantity;
   final String image;
 
-  Product(
-      {this.id,
-      required this.name,
-      required this.price,
-      required this.quantity,
-      required this.image});
+  Product({
+    this.id,
+    required this.name,
+    required this.qty,
+    required this.price,
+    required this.image,
+  });
 
-  factory Product.fromMap(Map<String, Product> json) => Product(
-        id: json['id'] as int?,
-        name: json['name'] as String,
-        price: json['price'] as double,
-        quantity: json['quantity'] as int,
-        image: json['image'] as String,
-      );
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'name': name,
+      'qty': qty,
+      'price': price,
+      'image': image,
+    };
+  }
 
-  Map<String, dynamic> toMap() => {
-        'id': id,
-        'name': name,
-        'price': price,
-        'quantity': quantity,
-        'image': image,
-      };
+  factory Product.fromMap(Map<String, dynamic> map) {
+    return Product(
+      id: map['id'],
+      name: map['name'],
+      qty: map['qty'],
+      price: map['price'],
+      image: map['image'],
+    );
+  }
 }
